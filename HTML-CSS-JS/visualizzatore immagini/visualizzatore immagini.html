@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Visualizzatore immagini</title>
+    <style>
+        body{
+            padding: 0px;
+            margin: 0px;
+        }
+        #visualizzatore > .immagine {
+            min-height: 100vh;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            display: none;
+        }
+        #visualizzatore > .immagine.active{
+            display: block;
+        }
+        button{
+            position: absolute;
+            top:40%;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: transparent;
+            border-radius: 100px;
+        }
+        .left{
+            left: 0%;
+        }
+        .right{
+            right: 0%;
+        }
+        button > img {
+            width: 50%;
+            height: 0%;
+        }
+        button:focus {outline:0;}
+        button:hover {
+            background-color: white;
+            cursor:pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+        <div id="visualizzatore">
+            <div class="immagine active" id="img0"> </div>
+
+            <div class="immagine" id="img1"> </div>
+
+            <div class="immagine" id="img2"> </div>
+
+            <div class="immagine" id="img3"> </div>
+                
+            </div>
+            <button type="button" class="left"><img src="left.png" alt="Sinistra"></button>
+            <button type="button" class="right"><img src="left.png" alt="Destra" style="transform: rotate(180deg);"></button>
+        </div>
+        <!-- 
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+        -->
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+    <script>
+        $(document).ready(function(){
+            var index=0;
+            $(".immagine").each(function(i){
+                var percorso = 'img' + i + '.jpg';
+                //con .attr non funzionava
+                $(this).css("background-image", "url("+ percorso + ")");
+            });
+            $("button").on("click", function(){
+                $(".immagine").removeClass("active");
+                if($(this).hasClass("left")){
+                    index--;
+                    if(index<0){
+                        index=3;
+                    }
+                    $("#img" + index).addClass("active");
+                }
+                else if ($(this).hasClass("right")){
+                    index++;
+                    if(index>3){
+                        index=0;
+                    }
+                    $("#img" + index).addClass("active");
+                }
+            });
+        })
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <title>Calcolatrice</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    .container .calcBG{
+        background-color: #0000CC;
+        border-radius: 20px;
+        padding: 2%;
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+    .top5 { margin-top:5%; margin-right: 5%; margin-left: 4%}
+    .top1 { margin-top:1%; margin-right: 5%; margin-left: 4%}
+  </style>
+  <script>
+          var operatore=null, operando1=null, operando2=null, risultato='';
+          /*$('document').ready(function () {
+            var operatori = document.getElementsByName("operatore");
+            for(i=0;i<operatori.length;i++){
+                operatori.item(i).onclick = function(){
+                operatore=operatori.item(i).textContent;
+              }
+            }
+          });*/
+          function operathore(valore){
+            if(operando2==null && operando1!=null){
+                operatore=valore;
+                document.getElementById('risultato').value += valore;    
+            }
+          }
+          function operando(valore){
+            if(!risultato.includes("=")){
+                if(operando1!=null && operatore!=null){
+                    if(operando2!=null) operando2+=valore;
+                    else operando2=valore;
+                }
+                else{
+                    if(operando1!=null) operando1+=valore;
+                    else operando1=valore;
+                }
+                document.getElementById('risultato').value += valore;
+            }
+          }
+          function calcola(){
+              switch(operatore){
+                  case '+':{
+                      risultato=eval(operando1)+eval(operando2);
+                      break;
+                  }
+                  case '-':{
+                      risultato=eval(operando1)-eval(operando2);
+                      break;
+                  }
+                  case '*':{
+                      risultato=eval(operando1)*eval(operando2);
+                      break;
+                  }
+                  case '/':{
+                      risultato=eval(operando1)/eval(operando2);
+                      break;
+                  }
+              }
+              document.getElementById('risultato').value += '=' + risultato;
+          }
+          function pulisci(){
+              document.getElementById('risultato').value = '';
+              operando1=null; operando2=null;operatore=null; risultato='';
+          }
+  </script>
+  </head>
+<body>
+
+    <div class="container text-center">
+        <div class="calcBG col-lg-3 col-md-3 col-sm-4 col-xs-6 col-md-offset-4 text-center">
+        <div class="row top1">
+                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                        <input id="risultato" type="text" class="form-control" name="risultato" placeholder="Risultato" readonly>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <button type="button" class="btn btn-danger btn-md" onclick="pulisci();">CE</button>
+                    </div>
+        </div>
+        <div class="row top5">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><button type="button" class="btn btn-primary btn-lg" value="7" onclick="operando(this.value)">7</button></div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><button type="button" class="btn btn-primary btn-lg" value="8" onclick="operando(this.value)">8</button></div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><button type="button" class="btn btn-primary btn-lg" value="9" onclick="operando(this.value)">9</button></div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><button type="button" name="operatore" class="btn btn-info btn-lg" onclick="operathore(this.textContent)">/</button></div>
+        </div>
+        <div class="row top5">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><button type="button" class="btn btn-primary btn-lg" value="4" onclick="operando(this.value)">4</button></div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><button type="button" class="btn btn-primary btn-lg" value="5" onclick="operando(this.value)">5</button></div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><button type="button" class="btn btn-primary btn-lg" value="6" onclick="operando(this.value)">6</button></div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><button type="button" name="operatore" class="btn btn-info btn-lg" onclick="operathore(this.textContent)">*</button></div>
+        </div>
+        <div class="row top5">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><button type="button" class="btn btn-primary btn-lg" value="1" onclick="operando(this.value)">1</button></div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><button type="button" class="btn btn-primary btn-lg" value="2" onclick="operando(this.value)">2</button></div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><button type="button" class="btn btn-primary btn-lg" value="3" onclick="operando(this.value)">3</button></div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><button type="button" name="operatore" class="btn btn-info btn-lg" onclick="operathore(this.textContent)">-</button></div>
+        </div>
+        <div class="row top5">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><button type="button" class="btn btn-primary btn-lg invisible">A</button></div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><button type="button" class="btn btn-primary btn-lg" onclick="operando(this.value)">0</button></div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><button type="button" class="btn btn-success btn-lg" onclick="calcola();">=</button></div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><button type="button" name="operatore" class="btn btn-info btn-lg" onclick="operathore(this.textContent)">+</button></div>
+        </div>
+    </div>
+    </div>
+
+</body>
+</html>

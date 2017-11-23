@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Operazioni</title>
+        <script>
+            function operazioni(){
+                var val1 = eval(document.getElementById("val1").value);
+                var val2 = eval(document.getElementById("val2").value);
+                var sum = val1+val2;
+                var sub = val1-val2;
+                var mol = val1*val2;
+                var div = val1/val2;
+                document.getElementById("mDiv").innerHTML = "<h1> La somma è " + sum + "<br>" + "La sottrazione è " + sub + "<br>"
+                + "La moltiplicazione è " + mol + "<br>" + "la divisione è " + div + "</h1>";
+            }
+        </script>
+    </head>
+    <body>
+        <p>Inserisci due numeri </p> 
+        <input type="text" placeholder="Inserisci primo valore" id="val1" value="6">
+        <input type="text" placeholder="Inserisci secondo valore" id="val2" value="2">
+        <button type="button" onclick="operazioni()">Esegui le quattro operazioni</button>
+        <div id="mDiv">
+            
+        </div>
+    </body>
+</html>
