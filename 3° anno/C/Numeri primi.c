@@ -1,50 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 main()
 {
-    int A,R,B,i;
+    int numero;
     printf("Inserisci un numero\n");
-    scanf("%d", &A);
-    R=A%2;
-    if (R==0)
-        {
-            printf("2\n");
+    scanf("%d", &numero);
+    boolean flag = false;
+    for(int i=0; i<numero/2; i++){
+        if(numero%i == 0){
+            flag = true;
+            break;
         }
-    R=A%3;
-    if (R==0)
-        {
-            printf("3\n");
-        }
-    R=A%5;
-    if (R==0)
-        {
-            printf("5\n");
-        }
-    R=A%7;
-    if (R==0)
-        {
-            printf("7\n");
-        }
-    R=A%11;
-    if (R==0)
-        {
-            printf("11\n");
-        }
-    R=A%13;
-    if (R==0)
-        {
-            printf("13\n");
-        }
-    R=A%17;
-    if (R==0)
-        {
-            printf("17\n");
-        }
-    R=A%19;
-    if (R==0)
-        {
-            printf("19\n");
-        }
-
+    }
+    if(flag)
+        printf("Il numero %d e' primo", numero);
+    else
+        printf("Il numero %d non e' primo", numero);
 }

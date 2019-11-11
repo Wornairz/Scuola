@@ -4,8 +4,8 @@ main()
 {
     FILE *input, *output;
     char v;
-    input=fopen("lol.html", "r");
-    output=fopen("hihi.txt", "w");
+    input=fopen("input.html", "r");
+    output=fopen("output.txt", "w");
     while(!feof(input))
     {
         fscanf(input, "%c", &v);

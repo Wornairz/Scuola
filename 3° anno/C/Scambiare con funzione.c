@@ -14,7 +14,7 @@ main()
 }
 void scambia(int *x, int *y)
 {
-    int z,l;
+    int z;
     z=*x;
     *x=*y;
     *y=z;
